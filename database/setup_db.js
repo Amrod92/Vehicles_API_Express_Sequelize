@@ -1,6 +1,7 @@
 const setup = require('./config.json');
 const { Sequelize, DataTypes } = require('sequelize');
 const mysql = require('mysql2/promise');
+const data = require('../car_list.json');
 
 //module.exports = db = {};
 
@@ -15,6 +16,10 @@ async function initialize() {
     user: 'root',
     password: null
   });
+
+  // drop database
+  await connection.query(`DROP DATABASE \`${database}\`;`);
+
   // creating database 'motorway'
   await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
 
@@ -29,6 +34,7 @@ async function initialize() {
 
   const queryInterface = sequelize.getQueryInterface();
 
+  // creating table
   queryInterface.createTable('vehicles', {
     id: {
       type: DataTypes.INTEGER,
@@ -54,10 +60,8 @@ async function initialize() {
     }
   });
 
-  //creating tables vehicles
-  await connection.query(
-    'CREATE TABLE vehicles (id INT NOT NULL AUTO_INCREMENT, model VARCHAR(255) NOT NULL, make VARCHAR(255) NOT NULL, updatedAt DATETIME, createdAt DATETIME, PRIMARY KEY (id));'
-  );
+  // insert dummy data
+  await queryInterface.bulkInsert('vehicles', data);
 
   // sync all models with database
   await sequelize.sync();
