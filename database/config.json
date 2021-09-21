@@ -1,0 +1,10 @@
+{
+  "database": {
+    "user": "root",
+    "password": null,
+    "database": "motorway",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "logging": false
+  }
+}

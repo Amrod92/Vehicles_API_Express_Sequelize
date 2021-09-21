@@ -1,10 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const db = require('../../models');
+const db = require('../../database/models/Vehicles');
 
 // GET all vehicles
 router.get('/vehicles', (req, res) => {
-  db.vehicles.findAll().then(vehicles => res.send(vehicles));
+  db.vehicles
+    .findAll()
+    .then(vehicles => res.send(vehicles))
+    .catch(error => {
+      console.error('onRejected function called: ' + error.message);
+    });
 });
 
 // GET vehicle by id
@@ -15,7 +20,10 @@ router.get('/vehicles/:id', (req, res) => {
         id: req.params.id
       }
     })
-    .then(vehicle => res.send(vehicle));
+    .then(vehicle => res.send(vehicle))
+    .catch(error => {
+      res.send('onRejected function called: ' + error.message);
+    });
 });
 
 // POST new vehicle
@@ -28,7 +36,10 @@ router.post('/vehicles', (req, res) => {
       createdAt: req.body.createdAt,
       updatedAt: req.body.updatedAt
     })
-    .then(submitVehicle => res.send(submitVehicle));
+    .then(submitVehicle => res.send(submitVehicle))
+    .catch(error => {
+      console.log('onRejected function called: ' + error.message);
+    });
 });
 
 // DELETE vehicle by id
@@ -58,4 +69,5 @@ router.put('/vehicles/:id', (req, res) => {
     )
     .then(() => res.send('success'));
 });
+
 module.exports = router;
