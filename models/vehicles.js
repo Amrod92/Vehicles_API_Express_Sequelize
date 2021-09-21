@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
+  // Creating Vahicles model
   const Vehicles = sequelize.define('vehicles', {
     id: {
       type: DataTypes.INTEGER,
