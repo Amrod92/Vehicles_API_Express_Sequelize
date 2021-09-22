@@ -66,6 +66,11 @@ The server is running at `localhost:8000`. You can change it anytime by going to
 
 ```
 
+## Screenshots 🧪
+
+To test that the API works as expected, it's possible to use Postman and get all vehicles.
+![App Screenshots](https://i.ibb.co/LnZS8yr/Capture.png)
+
 ## Run Locally and Dependencies 🛠
 
 Clone the project
