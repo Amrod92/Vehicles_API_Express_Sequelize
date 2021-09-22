@@ -1,5 +1,6 @@
-/*const { Sequelize, DataTypes } = require('sequelize');
-const sequelize = new Sequelize();
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../connection.js');
+
 // Creating Vahicles model
 const Vehicles = sequelize.define('vehicles', {
   id: {
@@ -27,4 +28,3 @@ const Vehicles = sequelize.define('vehicles', {
 });
 
 module.exports = Vehicles;
-*/
